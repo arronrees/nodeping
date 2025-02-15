@@ -6,7 +6,7 @@ import {
   Card,
   CardFooter,
 } from '@/components/ui/card';
-import { login } from '../actions';
+import { signup } from '../actions';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
@@ -27,9 +27,9 @@ export default async function LoginPage() {
     <div className='flex justify-center items-center min-h-screen'>
       <Card className='max-w-md min-w-64 sm:min-w-[450px]'>
         <CardHeader>
-          <CardTitle>Sign In</CardTitle>
+          <CardTitle>Sign Up</CardTitle>
           <CardDescription>
-            Enter your credentials below to login to your account.
+            Enter your details below to create your account.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -72,17 +72,17 @@ export default async function LoginPage() {
             </div>
 
             <div className='flex gap-2'>
-              <Button type='submit' className='w-full' formAction={login}>
-                Login
+              <Button type='submit' className='w-full' formAction={signup}>
+                Sign Up
               </Button>
             </div>
           </form>
         </CardContent>
         <CardFooter>
           <p className='text-xs'>
-            Don&apos;t have an account?{' '}
-            <Link href='/auth/signup' className='font-semibold'>
-              Sign Up Here
+            Already have an account?{' '}
+            <Link href='/auth/login' className='font-semibold'>
+              Login Here
             </Link>
           </p>
         </CardFooter>
