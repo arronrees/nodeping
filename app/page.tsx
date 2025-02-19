@@ -23,7 +23,7 @@ export default async function Home() {
 
   return (
     <div className='flex flex-col gap-4 justify-center items-center p-8'>
-      <div className='pt-32'>
+      <div className=''>
         <Card className='min-w-64 sm:min-w-[450px]'>
           <CardHeader>
             <CardTitle>Add New Ping</CardTitle>
@@ -51,8 +51,17 @@ export default async function Home() {
       <div>
         <Card className='min-w-64 sm:min-w-[450px]'>
           <CardHeader>
-            <CardTitle>Current Pings</CardTitle>
-            <CardDescription>Manage your current pings below</CardDescription>
+            <div className='flex gap-4 justify-between items-end'>
+              <div>
+                <CardTitle>Recently Added Pings</CardTitle>
+                <CardDescription>
+                  Manage your current pings below
+                </CardDescription>
+              </div>
+              <Button asChild size='sm'>
+                <Link href='/pings'>View All</Link>
+              </Button>
+            </div>
           </CardHeader>
           <CardContent>
             <div className='flex flex-col gap-2'>
