@@ -1,4 +1,5 @@
 import CreatePingForm from '@/components/ping/CreatePingForm';
+import PingGrid from '@/components/ping/PingGrid';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -49,56 +50,7 @@ export default async function Home() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className='flex flex-col gap-2'>
-              <div className='flex gap-2 items-center'>
-                <div className='flex items-center justify-center'>
-                  <picture>
-                    <img
-                      src='https://google.com/favicon.ico'
-                      width={20}
-                      height={20}
-                      className='w-5 h-5'
-                      alt='faviocon'
-                    />
-                  </picture>
-                </div>
-                <Link
-                  href='https://google.com'
-                  target='_blank'
-                  rel='noreferrer noopener'
-                  className='text-sm font-medium'
-                >
-                  <p>https://google.com</p>
-                </Link>
-                <Button asChild variant='outline' className='ml-auto'>
-                  <Link href='/'>Edit</Link>
-                </Button>
-              </div>
-              <div className='flex gap-2 items-center'>
-                <div className='flex items-center justify-center'>
-                  <picture>
-                    <img
-                      src='https://facebook.com/favicon.ico'
-                      width={20}
-                      height={20}
-                      className='w-5 h-5'
-                      alt='faviocon'
-                    />
-                  </picture>
-                </div>
-                <Link
-                  href='https://facebook.com'
-                  target='_blank'
-                  rel='noreferrer noopener'
-                  className='text-sm font-medium'
-                >
-                  <p>https://facebook.com</p>
-                </Link>
-                <Button asChild variant='outline' className='ml-auto'>
-                  <Link href='/'>Edit</Link>
-                </Button>
-              </div>
-            </div>
+            <PingGrid user={data.user} />
           </CardContent>
         </Card>
       </div>
