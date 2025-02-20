@@ -1,3 +1,4 @@
+import CreatePingForm from '@/components/ping/CreatePingForm';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -6,8 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { createClient } from '@/utils/supabase/server';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -30,21 +29,7 @@ export default async function Home() {
             <CardDescription>Enter the website url below</CardDescription>
           </CardHeader>
           <CardContent>
-            <form className='space-y-4'>
-              <div>
-                <Label htmlFor='new_url'>URL</Label>
-                <div className='mt-2'>
-                  <Input
-                    id='new_url'
-                    name='new_url'
-                    type='text'
-                    required
-                    autoComplete='new_url'
-                    placeholder='e.g. https://google.com'
-                  />
-                </div>
-              </div>
-            </form>
+            <CreatePingForm />
           </CardContent>
         </Card>
       </div>

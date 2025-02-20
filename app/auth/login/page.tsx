@@ -9,7 +9,7 @@ import {
 import Link from 'next/link';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import LoginForm from '@/components/forms/LoginForm';
+import LoginForm from '@/components/auth/LoginForm';
 
 export default async function LoginPage() {
   const supabase = await createClient();
