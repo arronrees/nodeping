@@ -22,7 +22,8 @@ export default function PingGrid({ user }: { user: User }) {
       const { data, error } = await supabase
         .from('pings')
         .select('*')
-        .eq('user_id', user.id);
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
 
       if (error) {
         throw error;
@@ -56,21 +57,23 @@ export default function PingGrid({ user }: { user: User }) {
 function Ping({ ping }: { ping: Tables<'pings'> }) {
   return (
     <div className='flex gap-2 items-center'>
-      <div className='flex items-center justify-center'>
-        <picture>
-          <Img src={getFavicon(ping.url) ?? undefined} />
-        </picture>
+      <div
+        className={`flex items-center justify-center ${
+          !ping.is_active ? 'opacity-40' : ''
+        }`}
+      >
+        <Img src={getFavicon(ping.url) ?? undefined} />
       </div>
       <Link
         href={ping.url}
         target='_blank'
         rel='noreferrer noopener'
-        className='text-sm font-medium'
+        className={`text-sm font-medium ${!ping.is_active ? 'opacity-40' : ''}`}
       >
         <p>{ping.url}</p>
       </Link>
       <Button asChild variant='outline' className='ml-auto'>
-        <Link href={`/ping/${ping.id}`}>Edit</Link>
+        <Link href={`/ping/${ping.id}`}>View</Link>
       </Button>
     </div>
   );

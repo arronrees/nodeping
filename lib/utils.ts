@@ -14,3 +14,21 @@ export function getFavicon(url: string): string | null {
     return null;
   }
 }
+
+export function secondsToRecurringTime(seconds: number) {
+  if (seconds % 86400 === 0) {
+    const days = seconds / 86400;
+    return `Every ${days > 1 ? days : ''} day${days > 1 ? 's' : ''}`;
+  }
+  if (seconds % 3600 === 0) {
+    const hours = seconds / 3600;
+    return `Every ${hours > 1 ? hours : ''} hour${hours > 1 ? 's' : ''}`;
+  }
+  if (seconds % 60 === 0) {
+    const minutes = seconds / 60;
+    return `Every ${minutes > 1 ? minutes : ''} minute${
+      minutes > 1 ? 's' : ''
+    }`;
+  }
+  return `Every ${seconds > 1 ? seconds : ''} second${seconds > 1 ? 's' : ''}`;
+}

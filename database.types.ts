@@ -43,6 +43,7 @@ export type Database = {
           check_interval_seconds: number
           created_at: string
           id: string
+          is_active: boolean
           last_checked: string | null
           notification_email: string
           status_last_checked: string | null
@@ -53,6 +54,7 @@ export type Database = {
           check_interval_seconds?: number
           created_at?: string
           id?: string
+          is_active?: boolean
           last_checked?: string | null
           notification_email: string
           status_last_checked?: string | null
@@ -63,6 +65,7 @@ export type Database = {
           check_interval_seconds?: number
           created_at?: string
           id?: string
+          is_active?: boolean
           last_checked?: string | null
           notification_email?: string
           status_last_checked?: string | null

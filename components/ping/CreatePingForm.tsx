@@ -41,7 +41,7 @@ export default function CreatePingForm() {
             type='text'
             required
             autoComplete='url'
-            placeholder='e.g. https://google.com'
+            placeholder='https://google.com'
           />
           <SubmitButton pending={pending} />
         </div>
