@@ -72,7 +72,7 @@ function Ping({ ping }: { ping: Tables<'pings'> }) {
       >
         <p>{ping.url}</p>
       </Link>
-      <Button asChild variant='outline' className='ml-auto'>
+      <Button asChild variant='outline' size='sm' className='ml-auto'>
         <Link href={`/ping/${ping.id}`}>View</Link>
       </Button>
     </div>

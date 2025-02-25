@@ -67,3 +67,32 @@ export async function validateUpdatePingData(data: unknown): Promise<{
     }
   }
 }
+
+const deletePingData = z
+  .object({
+    id: z.string({
+      required_error: 'ID is required',
+      invalid_type_error: 'Must provide a valid ID',
+    }),
+  })
+  .strict();
+
+type DeletePingType = z.infer<typeof deletePingData>;
+
+export async function validateDeletePingData(data: unknown): Promise<{
+  success: boolean;
+  error: string | null;
+  data: DeletePingType | null;
+}> {
+  try {
+    const validatedData = deletePingData.parse(data);
+
+    return { success: true, error: null, data: validatedData };
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      return { success: false, error: err.errors[0].message, data: null };
+    } else {
+      return { success: false, error: 'An unknown error occurred', data: null };
+    }
+  }
+}

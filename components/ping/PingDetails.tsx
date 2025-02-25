@@ -9,6 +9,7 @@ import { Tables } from '@/database.types';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import EditPingForm from './EditPingForm';
+import DeletePingForm from './DeletePingForm';
 
 export default function PingDetails({ user, id }: { user: User; id: string }) {
   const supabase = createClient();
@@ -56,15 +57,20 @@ export default function PingDetails({ user, id }: { user: User; id: string }) {
 
   return (
     <div>
-      <div className='flex gap-2 items-center'>
-        <div className='flex items-center justify-center'>
-          <Img src={getFavicon(ping.url) ?? undefined} />
+      <div className='flex gap-2 justify-between items-center'>
+        <div className='flex gap-2 items-center'>
+          <div className='flex items-center justify-center'>
+            <Img src={getFavicon(ping.url) ?? undefined} />
+          </div>
+          <p className='font-bold'>
+            <Link href={ping.url} target='_blank' rel='noreferrer noopener'>
+              {ping.url}
+            </Link>
+          </p>
         </div>
-        <p className='font-bold'>
-          <Link href={ping.url} target='_blank' rel='noreferrer noopener'>
-            {ping.url}
-          </Link>
-        </p>
+        <div>
+          <DeletePingForm ping={ping} />
+        </div>
       </div>
       <div className='py-4'>
         <hr />
