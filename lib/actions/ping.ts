@@ -50,6 +50,30 @@ export async function createPing(
     return { error: 'Invalid data provided', success: false };
   }
 
+  const { data: findData, error: findError } = await supabase
+    .from('pings')
+    .select('*')
+    .eq('user_id', user.id)
+    .eq('url', validatedData.url)
+    .limit(1)
+    .maybeSingle();
+
+  if (findData) {
+    return {
+      error: 'You already have a ping setup for this url.',
+      success: false,
+    };
+  }
+
+  if (findError) {
+    console.log('Finding ping error: ', findError);
+
+    return {
+      error: 'An unkown error occured, please try again later.',
+      success: false,
+    };
+  }
+
   const { error: createError } = await supabase.from('pings').insert({
     url: validatedData.url,
     notification_email: (user.email as string) ?? '',

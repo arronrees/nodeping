@@ -47,7 +47,7 @@ export default function CreatePingForm() {
         </div>
 
         {state.error && (
-          <div className='mt-2 px-2 py-1 font-medium rounded bg-red-50 border border-red-100 text-red-700 flex gap-2 items-center'>
+          <div className='mt-2 px-2 py-1 font-medium rounded bg-red-50 border border-red-100 text-red-700 flex gap-2 items-center text-sm'>
             <InfoIcon className='w-3 h-3' />
             {state.error}
           </div>

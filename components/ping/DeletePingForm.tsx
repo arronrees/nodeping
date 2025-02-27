@@ -27,7 +27,7 @@ export default function DeletePingForm({ ping }: { ping: Tables<'pings'> }) {
         description: 'Ping deleted successfully!',
       });
 
-      router.push('/');
+      router.push('/pings');
     }
   }, [state.success, toast, router]);
 

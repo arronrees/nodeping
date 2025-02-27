@@ -9,7 +9,13 @@ import { User } from '@supabase/supabase-js';
 import { Skeleton } from '../ui/skeleton';
 import { getFavicon } from '@/lib/utils';
 
-export default function PingGrid({ user }: { user: User }) {
+export default function PingGrid({
+  user,
+  viewAll,
+}: {
+  user: User;
+  viewAll?: boolean;
+}) {
   const supabase = createClient();
 
   const [pings, setPings] = useState<Tables<'pings'>[] | null>(null);
@@ -23,6 +29,7 @@ export default function PingGrid({ user }: { user: User }) {
         .from('pings')
         .select('*')
         .eq('user_id', user.id)
+        .limit(viewAll ? Infinity : 5)
         .order('created_at', { ascending: false });
 
       if (error) {
@@ -37,7 +44,7 @@ export default function PingGrid({ user }: { user: User }) {
     } finally {
       setIsLoading(false);
     }
-  }, [user, supabase]);
+  }, [user, supabase, viewAll]);
 
   useEffect(() => {
     getPings();
@@ -70,10 +77,10 @@ function Ping({ ping }: { ping: Tables<'pings'> }) {
         rel='noreferrer noopener'
         className={`text-sm font-medium ${!ping.is_active ? 'opacity-40' : ''}`}
       >
-        <p>{ping.url}</p>
+        <p>{ping.url.replace('https://', '')}</p>
       </Link>
       <Button asChild variant='outline' size='sm' className='ml-auto'>
-        <Link href={`/ping/${ping.id}`}>View</Link>
+        <Link href={`/pings/${ping.id}`}>View</Link>
       </Button>
     </div>
   );
